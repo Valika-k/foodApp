@@ -20,10 +20,11 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.learning.Utils.CustomNamingStrategy;
 import com.learning.dto.Login;
-import com.learning.dto.Register;
+import com.learning.dto.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,9 +35,9 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
+@EqualsAndHashCode
 @Entity
 @Table(name = "login")
-
 
 public class Login implements Comparable<Login>{
 	
@@ -48,14 +49,14 @@ public class Login implements Comparable<Login>{
 
 	@Override
 	public int compareTo(Login o) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub   
 		return this.userName.compareTo(o.getUserName());
 	}
 	
-	
-	@OneToOne
-    @JoinColumn(name = "regId")
-    @JsonProperty(access=Access.WRITE_ONLY)
-	private Register register;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
+    @JoinColumn(name = "id")
+    @JsonProperty(access = Access.WRITE_ONLY)
+	private User user;
 	
 }

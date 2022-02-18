@@ -10,12 +10,14 @@ import com.learning.dto.Food;
 
 import com.learning.exception.AlreadyExistsException;
 import com.learning.exception.IdNotFoundException;
+import com.learning.exception.TypeNotFoundException;
 
 @Service
 public interface FoodService {
 	public Food addFood(Food food) throws AlreadyExistsException;
 	public Food updateFood(int id, Food food) throws IdNotFoundException;
 	public Food getFoodById(int id) throws IdNotFoundException;
+	public Optional<List<Food>> getFoodByfoodType(String foodType) throws  TypeNotFoundException;
 	public Food[] getAllFoodItems();
 	public String deleteFoodItemById(int id) throws IdNotFoundException;
 	public Optional<List<Food>> getAllFoodDetails() ;

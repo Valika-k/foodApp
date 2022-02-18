@@ -1,5 +1,6 @@
 package com.learning.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.learning.dto.Food;
-import com.learning.dto.Register;
+import com.learning.dto.User;
 import com.learning.exception.AlreadyExistsException;
 import com.learning.exception.IdNotFoundException;
+import com.learning.exception.TypeNotFoundException;
 import com.learning.repository.FoodRepository;
 import com.learning.service.FoodService;
 
@@ -93,6 +95,21 @@ public class FoodServiceImpl implements FoodService{
 	public Optional<List<Food>> getAllFoodDetails() {
 		// TODO Auto-generated method stub
 		return Optional.ofNullable(foodRepository.findAll());
+	}
+
+	@Override
+	public Optional<List<Food>> getFoodByfoodType(String foodType) throws TypeNotFoundException {
+		// TODO Auto-generated method stub
+		List<Food> optional= foodRepository.findAll();
+		List<Food> result= new ArrayList<>();
+		for (Food food : optional) {
+			if(food.getFoodType().equals(foodType)) {
+				result.add(food);
+			}
+		}
+		
+		return Optional.ofNullable(result);
+		
 	}
 
 }

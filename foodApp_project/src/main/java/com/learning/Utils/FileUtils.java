@@ -18,7 +18,5 @@ public class FileUtils {
 		
 	}
 	
-//	public String writeFile(byte[] allBytes, String fileName) {
-//		
-//	}
+
 }

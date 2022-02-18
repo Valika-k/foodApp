@@ -22,7 +22,7 @@ public class ExceptionAdvice {
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<?> exceptionHandler(Exception e){
 		HashMap<String,String> map=new HashMap<>();
-		map.put("message", "unknown exception"+e.getMessage());
+		map.put("message", "unknown exception : "+e.getMessage());
 		return ResponseEntity.badRequest().body(map);
 	}
 	
